@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { Posts, Search, User } from "./components";
 
 const App = () => {
-  return <h1>Hello, World!</h1>;
+  return (
+    <div className="app">
+      <Posts />
+      <Search />
+      <User />
+    </div>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById("app"));

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-import { getToken, clearToken } from "./api";
+import { getToken, clearToken, fetchPosts } from "./api";
 
-import { Posts, Search, User, Auth } from "./components";
+import { Posts, Search, Auth } from "./components";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!getToken());
@@ -26,9 +26,8 @@ const App = () => {
         <Auth setIsLoggedIn={setIsLoggedIn} />
       )}
 
-      {/*<Posts />
-      <Search />
-      <User />*/}
+      <Posts fetchPosts={fetchPosts} />
+      {/*<Search />*/}
     </div>
   );
 };

@@ -62,7 +62,54 @@ export const loginUser = async (username, password) => {
 
   if (data && data.token) {
     setToken(data.token);
+    console.log(data.token)
   }
 
+  return data;
+};
+// export const fecthPost = (post)=> {
+//   fetch( BASE_URL, {
+//     method: "POST",
+//     
+//     body: JSON.stringify({
+//      post
+//     })
+//   });
+// }
+
+export const fecthPost = async (post) => {
+  const token = getToken
+  const response = await fetch(`${BASE_URL}/posts`, {
+    method: "POST",
+    headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmE0OGYyZTU2OTU2ODAwMTc4M2VmN2QiLCJ1c2VybmFtZSI6InF1ZW50aW4iLCJpYXQiOjE2MDQ3MjAxNjh9.gaLxI7aJzbISGcLcF1YPVaLu-2JgqL7t9CB-bvO3RTo',
+          },
+    body: JSON.stringify({
+      post
+    }),
+  });
+
+  const { error, data } = await response.json();
+
+  return data;
+};
+
+
+//Create Fetch method GET
+
+export const getPost = async () => {
+  const token = getToken
+  const response = await fetch(`${BASE_URL}/posts`, {
+    method: "GET",
+    headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmE0OGYyZTU2OTU2ODAwMTc4M2VmN2QiLCJ1c2VybmFtZSI6InF1ZW50aW4iLCJpYXQiOjE2MDQ3MjAxNjh9.gaLxI7aJzbISGcLcF1YPVaLu-2JgqL7t9CB-bvO3RTo',
+          },
+  });
+
+  const { error, data } = await response.json();
+
+console.log(data.posts)
   return data;
 };

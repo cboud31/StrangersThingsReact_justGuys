@@ -12,7 +12,7 @@ const App = () => {
     <div className="app">
       {isLoggedIn ? (
         <>
-          <h1>Thanks for logging in!</h1>
+          
           <button
             onClick={() => {
               clearToken();
@@ -21,14 +21,15 @@ const App = () => {
           >
             LOG OUT
           </button>
+
+          <Posts isLoggedIn={ isLoggedIn } />
         </>
       ) : (
         <Auth setIsLoggedIn={setIsLoggedIn} />
       )}
 
-      {/*<Posts />
-      <Search />
-      <User />*/}
+      {/* <Search /> */}
+      {/* <User /> */}
     </div>
   );
 };

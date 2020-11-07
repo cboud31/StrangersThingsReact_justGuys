@@ -4,6 +4,10 @@ import ReactDOM from "react-dom";
 import { getToken, clearToken, hitAPI } from "./api";
 
 import Auth from "./components/Auth";
+import Title from "./components/Title"
+import Search from "./components/Search"
+
+import "./styles.css"
 
 const App = () => {
   // a piece of state that represents the status of the current user

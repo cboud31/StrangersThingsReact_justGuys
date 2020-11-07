@@ -13,6 +13,39 @@ const setToken = (token) => {
   localStorage.setItem("auth-token", token);
 };
 
+export async function getPosts(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export const fetchPosts = getPosts(`${BASE_URL}/posts`);
+
+console.log(fetchPosts);
+
+{
+  /*export const makeUserPosts = async (postData) => {
+  const response = await fetch(`${BASE_URL}/post`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify({
+      user: {
+        username: username,
+        password: password,
+      },
+    }),
+  });
+};*/
+}
+
 export const registerUser = async (username, password) => {
   const response = await fetch(`${BASE_URL}/users/register`, {
     method: "POST",

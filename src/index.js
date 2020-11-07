@@ -21,37 +21,30 @@ const App = () => {
 
   return (
     <div className="app">
-      {isLoggedIn ? (
-        <>
-          <h1>Thanks for logging in!</h1>
-          <button
-            onClick={() => {
-              clearToken();
-              setIsLoggedIn(false);
-            }}
-          >
-            LOG OUT
-          </button>
-        </>
-      ) : (
-        <Auth setIsLoggedIn={setIsLoggedIn} />
-      )}
-      {postList.map((post, idx) => {
-        return (
-          <div
-            className="post"
-            key={idx}
-            style={{
-              border: post.isAuthor ? "5px solid gold" : "1px solid brown",
-            }}
-          >
-            <h5>
-              {post.title} ({post.location})
-            </h5>
-            <p>{post.description}</p>
-          </div>
-        );
-      })}
+      <header className="nav">
+        <Title />
+        {isLoggedIn ? (
+          <>
+            <div className="navButtons">
+              <button>PROFILE</button>
+              <button>MESSAGES</button>
+              <button>NEW POST</button>
+              <button
+                onClick={() => {
+                  clearToken();
+                  setIsLoggedIn(false);
+                }}
+              >
+                LOG OUT
+              </button>
+            </div>
+          </>
+        ) : (
+          <Auth setIsLoggedIn={setIsLoggedIn} />
+        )}
+      </header>
+      <Search />
+      {/* <Main /> */}
     </div>
   );
 };

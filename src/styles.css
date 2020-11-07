@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  text-align: center;
+  display: grid;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid black;
+  background: seashell;
+}
+
+#search {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border: 1px solid black;
+}

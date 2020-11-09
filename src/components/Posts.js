@@ -39,6 +39,16 @@ const Posts = (props) => {
     });
   }
 
+  const handleChange =(event)=>{
+      if(event.target.value === "yes"){
+setWillDeliver(true);
+      }else{
+setWillDeliver(false);
+
+      }
+
+  }
+
   return (
     <div id="post">
 {  isLoggedIn ?    <aside>
@@ -67,7 +77,12 @@ const Posts = (props) => {
             onChange={(e) => setPrice(e.target.value)}
           ></input>
           <br />
-          <input type="checkbox" value={willDeliver}></input>
+          <select value={willDeliver} onChange={(e)=>{handleChange(e)}} name="Will Deliver" >
+          <option selected="selected">Will Deliver</option>
+  <option value="yes">Yes</option>
+  <option value="no">No</option>
+
+</select>
           <label>Will Deliver</label>
           <br />
           <input type="submit" value="Submit"></input>
@@ -84,7 +99,7 @@ const Posts = (props) => {
                 <div>{post.price}</div>
                 <div>{post.description}</div>
                 <div>{post.location}</div>
-                <div>{post.willDeliver}</div>
+                <div>{post.willDeliver? "Will Deliver" : "Will Not Deliver"}</div>
               {post.isAuthor ? <button onClick={()=>{handleDelete(post._id,idx)}}>Delete</button> : null}
               </div>
             </div>

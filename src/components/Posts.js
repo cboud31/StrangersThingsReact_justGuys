@@ -9,9 +9,7 @@ const Posts = (props) => {
   const [willDeliver, setWillDeliver] = useState(false);
   const [selectDeliver, setSelectDeliver] = useState("no");
 
-  const { postList, setPostList, isLoggedIn} = props;
-
-
+  const { postList, setPostList, isLoggedIn } = props;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -32,63 +30,73 @@ const Posts = (props) => {
   };
 
   const handleDelete = (id, index) => {
-      deletePost(id).then(results=>{
-          const postsCopy = postList.slice();
-          postsCopy.splice(index, 1)
-          setPostList(postsCopy);
+    deletePost(id).then((results) => {
+      const postsCopy = postList.slice();
+      postsCopy.splice(index, 1);
+      setPostList(postsCopy);
     });
-  }
+  };
 
-  const handleChange =(event)=>{
-      setSelectDeliver(event.target.value)
-      if(event.target.value === "yes"){
-setWillDeliver(true);
-      }else{
-setWillDeliver(false);
-
-      }
-
-  }
+  const handleChange = (event) => {
+    setSelectDeliver(event.target.value);
+    if (event.target.value === "yes") {
+      setWillDeliver(true);
+    } else {
+      setWillDeliver(false);
+    }
+  };
 
   return (
     <div id="post">
-{  isLoggedIn ?    <aside>
-        <form onSubmit={handleSubmit} className="post">
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          ></input>
-          <br />
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></input>
-          <br />
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          ></input>
-          <br />
-          <input
-            type="text"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          ></input>
-          <br />
-          <select value={selectDeliver} onChange={(e)=>{handleChange(e)}} name="Will Deliver" >
-          <option value="no" >No</option>
-  
-  <option value="yes" >Yes</option>
+      {isLoggedIn ? (
+        <aside>
+          <form onSubmit={handleSubmit} className="post">
+            <h3>Create Post</h3>
+            <input
+              type="text"
+              value={title}
+              placeholder="Title"
+              onChange={(e) => setTitle(e.target.value)}
+            ></input>
+            <br />
+            <input
+              type="text"
+              value={description}
+              placeholder="Description"
+              onChange={(e) => setDescription(e.target.value)}
+            ></input>
+            <br />
+            <input
+              type="text"
+              value={location}
+              placeholder="Location"
+              onChange={(e) => setLocation(e.target.value)}
+            ></input>
+            <br />
+            <input
+              type="text"
+              value={price}
+              placeholder="Price"
+              onChange={(e) => setPrice(e.target.value)}
+            ></input>
+            <br />
+            <select
+              value={selectDeliver}
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="Will Deliver"
+            >
+              <option value="no">No</option>
 
-</select>
-          <label>Will Deliver</label>
-          <br />
-          <input type="submit" value="Submit"></input>
-        </form>
-      </aside> : null}
+              <option value="yes">Yes</option>
+            </select>
+            <label>Will Deliver</label>
+            <br />
+            <input type="submit" value="Submit"></input>
+          </form>
+        </aside>
+      ) : null}
 
       <div>
         {postList.map((post, idx) => {
@@ -100,8 +108,18 @@ setWillDeliver(false);
                 <div>{post.price}</div>
                 <div>{post.description}</div>
                 <div>{post.location}</div>
-                <div>{post.willDeliver? "Will Deliver" : "Will Not Deliver"}</div>
-              {post.isAuthor ? <button onClick={()=>{handleDelete(post._id,idx)}}>Delete</button> : null}
+                <div>
+                  {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
+                </div>
+                {post.isAuthor ? (
+                  <button
+                    onClick={() => {
+                      handleDelete(post._id, idx);
+                    }}
+                  >
+                    Delete
+                  </button>
+                ) : null}
               </div>
             </div>
           );

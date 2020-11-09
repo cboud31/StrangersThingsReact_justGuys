@@ -11,21 +11,35 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: 1px solid black;
+  border: solid rgb(160, 174, 211);
+  border-width: 5px;
+  border-style: double;
   background: seashell;
 }
 
 #search {
   padding-top: 12px;
   padding-bottom: 12px;
-  border: 1px solid black;
+  border: solid seashell;
+  border-width: 5px;
+  border-style: double;
+  background: rgb(160, 174, 211);
 }
 
 .posts {
-  border-color: blue;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-color: rgb(160, 174, 211);
   border-width: 5px;
   border-style: double;
+  background: seashell;
 }
 
-.post {
+aside {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border: solid seashell;
+  border-width: 5px;
+  border-style: double;
+  background: rgb(160, 174, 211);
 }

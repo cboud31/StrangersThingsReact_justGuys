@@ -21,12 +21,11 @@
   border: 1px solid black;
 }
 
-.posts{
+.posts {
   border-color: blue;
   border-width: 5px;
   border-style: double;
 }
 
 .post {
-  
 }

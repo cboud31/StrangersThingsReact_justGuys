@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { fecthPost, getPost, deletePost } from "../api";
 
 const Posts = (props) => {
-  const [newPost, setNewPost] = useState({});
-  const [posts, setPosts] = useState([]);
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
   const [title, setTitle] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
+  const [selectDeliver, setSelectDeliver] = useState("no");
+
   const { postList, setPostList, isLoggedIn} = props;
 
 
@@ -40,6 +40,7 @@ const Posts = (props) => {
   }
 
   const handleChange =(event)=>{
+      setSelectDeliver(event.target.value)
       if(event.target.value === "yes"){
 setWillDeliver(true);
       }else{
@@ -77,10 +78,10 @@ setWillDeliver(false);
             onChange={(e) => setPrice(e.target.value)}
           ></input>
           <br />
-          <select value={willDeliver} onChange={(e)=>{handleChange(e)}} name="Will Deliver" >
-          <option selected="selected">Will Deliver</option>
-  <option value="yes">Yes</option>
-  <option value="no">No</option>
+          <select value={selectDeliver} onChange={(e)=>{handleChange(e)}} name="Will Deliver" >
+          <option value="no" >No</option>
+  
+  <option value="yes" >Yes</option>
 
 </select>
           <label>Will Deliver</label>

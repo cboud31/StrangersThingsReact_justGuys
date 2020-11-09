@@ -76,3 +76,40 @@ export const hitAPI = async (method, endpoint, bodyObj) => {
 
   return data;
 };
+
+export const fecthPost = async (post) => {
+  console.log(post, "in api")
+  const url = `${BASE_URL}/posts`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: buildHeaders(),
+    body: JSON.stringify({post}),
+  });
+
+  const { error, data } = await response.json();
+
+  if (error) {
+    throw Error(error.message);
+  }
+
+
+  return data;
+};
+
+export const deletePost = async (id) => {
+  const url = `${BASE_URL}/posts/${id}`;
+
+  const response = await fetch(url, {
+    method: "DELETE",
+    headers: buildHeaders(),
+  });
+
+  const { error, data } = await response.json();
+
+  if (error) {
+    throw Error(error.message);
+  }
+
+  return data;
+};

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 import { getToken, clearToken, hitAPI } from "./api";
-
+// import Posts from "./components/Posts";
 import Auth from "./components/Auth";
-import Title from "./components/Title"
-import Search from "./components/Search"
+import Title from "./components/Title";
+import Search from "./components/Search";
 
-import "./styles.css"
+import "./styles.css";
+import Posts from "./components/Posts";
 
 const App = () => {
   // a piece of state that represents the status of the current user
@@ -48,6 +49,7 @@ const App = () => {
         )}
       </header>
       <Search />
+      <Posts postList={ postList } setPostList={ setPostList } isLoggedIn={ isLoggedIn }/>
       {/* <Main /> */}
     </div>
   );

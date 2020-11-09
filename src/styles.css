@@ -20,3 +20,13 @@
   padding-bottom: 12px;
   border: 1px solid black;
 }
+
+.posts{
+  border-color: blue;
+  border-width: 5px;
+  border-style: double;
+}
+
+.post {
+  
+}

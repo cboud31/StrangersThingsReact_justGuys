@@ -26,7 +26,6 @@ const Posts = (props) => {
       const post = result.post;
       const postsCopy = postList.slice();
       postsCopy.push(post);
-      // console.log(postsCopy, 'in post')
       setPostList(postsCopy);
     });
   };

@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Search = () => {
+  const [post, setPost] = useState("");
+
   return (
-    <div id="search">
-      <input type="text" size="75" placeholder="Search Posts" />
-      <button>Search</button>
-    </div>
+    <form id="search">
+      <fieldset>
+        <label post="keywords"></label>
+        <input
+          id="keywords"
+          type="text"
+          placeholder="enter keywords..."
+          value={(post.title, post.description)}
+          onChange={(event) => setPost(event.target.value)}
+        />
+      </fieldset>
+      <button>SEARCH</button>
+    </form>
   );
 };
 

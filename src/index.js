@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 import { getToken, clearToken, hitAPI } from "./api";
-import Auth from "./components/Auth";
-import Title from "./components/Title";
-import Search from "./components/Search";
+import { Auth, Title, Search, Posts } from "./components";
 import "./styles.css";
-import Posts from "./components/Posts";
 
 const App = () => {
-  // a piece of state that represents the status of the current user
+  const [searchResults, setSearchResults] = useState({ post: {} });
   const [isLoggedIn, setIsLoggedIn] = useState(!!getToken());
   const [postList, setPostList] = useState([]);
 
@@ -46,7 +43,7 @@ const App = () => {
           <Auth setIsLoggedIn={setIsLoggedIn} />
         )}
       </header>
-      <Search />
+      <Search setSearchResults={setSearchResults} />
       <Posts
         postList={postList}
         setPostList={setPostList}

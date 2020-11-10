@@ -77,14 +77,14 @@ export const hitAPI = async (method, endpoint, bodyObj) => {
   return data;
 };
 
-export const fecthPost = async (post) => {
-  console.log(post, "in api")
-  const url = `${BASE_URL}/posts`;
+export const fetchPost = async (post) => {
+  console.log(post, "in api");
+  const url = `${BASE_URL}/posts&keyword=${post}`;
 
   const response = await fetch(url, {
     method: "POST",
     headers: buildHeaders(),
-    body: JSON.stringify({post}),
+    body: JSON.stringify({ post }),
   });
 
   const { error, data } = await response.json();
@@ -92,7 +92,6 @@ export const fecthPost = async (post) => {
   if (error) {
     throw Error(error.message);
   }
-
 
   return data;
 };

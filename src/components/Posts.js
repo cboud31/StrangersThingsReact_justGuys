@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fecthPost, getPost, deletePost } from "../api";
+import { fetchPost, hitAPI, deletePost } from "../api";
 
 const Posts = (props) => {
   const [description, setDescription] = useState("");
@@ -22,7 +22,7 @@ const Posts = (props) => {
       title,
     };
 
-    fecthPost(newPost).then((results) => {
+    fetchPost(newPost).then((results) => {
       const postsCopy = postList.slice();
       postsCopy.push(results);
       setPostList(postsCopy);
@@ -47,84 +47,86 @@ const Posts = (props) => {
   };
 
   return (
-    <div id="post">
-      {isLoggedIn ? (
-        <aside>
-          <form onSubmit={handleSubmit} className="post">
-            <h3>Create Post</h3>
-            <input
-              type="text"
-              value={title}
-              placeholder="Title"
-              onChange={(e) => setTitle(e.target.value)}
-            ></input>
-            <br />
-            <input
-              type="text"
-              value={description}
-              placeholder="Description"
-              onChange={(e) => setDescription(e.target.value)}
-            ></input>
-            <br />
-            <input
-              type="text"
-              value={location}
-              placeholder="Location"
-              onChange={(e) => setLocation(e.target.value)}
-            ></input>
-            <br />
-            <input
-              type="text"
-              value={price}
-              placeholder="Price"
-              onChange={(e) => setPrice(e.target.value)}
-            ></input>
-            <br />
-            <select
-              value={selectDeliver}
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              name="Will Deliver"
-            >
-              <option value="no">No</option>
+    <div>
+      <aside id="post">
+        {isLoggedIn ? (
+          <aside>
+            <form onSubmit={handleSubmit} className="post">
+              <h3>Create Post</h3>
+              <input
+                type="text"
+                value={title}
+                placeholder="Title"
+                onChange={(e) => setTitle(e.target.value)}
+              ></input>
+              <br />
+              <input
+                type="text"
+                value={description}
+                placeholder="Description"
+                onChange={(e) => setDescription(e.target.value)}
+              ></input>
+              <br />
+              <input
+                type="text"
+                value={location}
+                placeholder="Location"
+                onChange={(e) => setLocation(e.target.value)}
+              ></input>
+              <br />
+              <input
+                type="text"
+                value={price}
+                placeholder="Price"
+                onChange={(e) => setPrice(e.target.value)}
+              ></input>
+              <br />
+              <select
+                value={selectDeliver}
+                onChange={(e) => {
+                  handleChange(e);
+                }}
+                name="Will Deliver"
+              >
+                <option value="no">No</option>
 
-              <option value="yes">Yes</option>
-            </select>
-            <label>Will Deliver</label>
-            <br />
-            <input type="submit" value="Submit"></input>
-          </form>
-        </aside>
-      ) : null}
+                <option value="yes">Yes</option>
+              </select>
+              <label>Will Deliver</label>
+              <br />
+              <input type="submit" value="Submit"></input>
+            </form>
+          </aside>
+        ) : null}
 
-      <div>
-        {postList.map((post, idx) => {
-          return (
-            <div className="posts" key={idx}>
-              <div>
-                <h3>{post.title}</h3>
-                <span>{post.author.username}</span>
-                <div>{post.price}</div>
-                <div>{post.description}</div>
-                <div>{post.location}</div>
+        <div>
+          {postList.map((post, idx) => {
+            return (
+              <div className="posts" key={idx}>
                 <div>
-                  {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
+                  <h3>{post.title}</h3>
+                  <span>{post.author.username}</span>
+                  <div>{post.price}</div>
+                  <div>{post.description}</div>
+                  <div>{post.location}</div>
+                  <div>
+                    {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
+                  </div>
+                  {post.isAuthor ? (
+                    <button
+                      onClick={() => {
+                        handleDelete(post._id, idx);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  ) : null}
                 </div>
-                {post.isAuthor ? (
-                  <button
-                    onClick={() => {
-                      handleDelete(post._id, idx);
-                    }}
-                  >
-                    Delete
-                  </button>
-                ) : null}
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </aside>
     </div>
   );
 };

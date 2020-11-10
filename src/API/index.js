@@ -79,7 +79,7 @@ export const hitAPI = async (method, endpoint, bodyObj) => {
 
 export const fetchPost = async (post) => {
   console.log(post, "in api");
-  const url = `${BASE_URL}/posts&keyword=${post}`;
+  const url = `${BASE_URL}/posts`;
 
   const response = await fetch(url, {
     method: "POST",

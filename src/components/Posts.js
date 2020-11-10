@@ -13,7 +13,7 @@ const Posts = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //creates post object to pass as body of Post
+
     const newPost = {
       description,
       location,
@@ -22,9 +22,11 @@ const Posts = (props) => {
       title,
     };
 
-    fetchPost(newPost).then((results) => {
+    fetchPost(newPost).then((result) => {
+      const post = result.post;
       const postsCopy = postList.slice();
-      postsCopy.push(results);
+      postsCopy.push(post);
+      // console.log(postsCopy, 'in post')
       setPostList(postsCopy);
     });
   };
@@ -99,19 +101,18 @@ const Posts = (props) => {
           </aside>
         ) : null}
 
-        <div>
-          {postList.map((post, idx) => {
-            return (
-              <div className="posts" key={idx}>
+      <div>
+        {postList.reverse().map((post, idx) => {
+          return (
+            <div className="posts" key={idx}>
+                <h3>{post.title}</h3>
+                <span>{post.author.username}</span>
+                <div>{post.price}</div>
+                <div>{post.description}</div>
+                <div>{post.location}</div>
                 <div>
-                  <h3>{post.title}</h3>
-                  <span>{post.author.username}</span>
-                  <div>{post.price}</div>
-                  <div>{post.description}</div>
-                  <div>{post.location}</div>
-                  <div>
-                    {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
-                  </div>
+                {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
+                </div>
                   {post.isAuthor ? (
                     <button
                       onClick={() => {
@@ -121,12 +122,11 @@ const Posts = (props) => {
                       Delete
                     </button>
                   ) : null}
-                </div>
               </div>
             );
           })}
         </div>
-      </aside>
+        </aside>
     </div>
   );
 };

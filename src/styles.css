@@ -43,3 +43,8 @@ aside {
   border-style: double;
   background: rgb(160, 174, 211);
 }
+
+textarea {
+  height: 20vw;
+  width: 60vw;
+}

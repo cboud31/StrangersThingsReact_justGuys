@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchPost, hitAPI, deletePost } from "../api";
+import { fetchPost, hitAPI, deletePost, fetchMessages } from "../api";
 
 const Posts = (props) => {
   const [description, setDescription] = useState("");
@@ -100,32 +100,43 @@ const Posts = (props) => {
           </aside>
         ) : null}
 
-      <div>
-        {postList.reverse().map((post, idx) => {
-          return (
-            <div className="posts" key={idx}>
+        <div>
+          <aside>
+          <form onSubmit={handleSubmit} classname="messages">
+            <h3>Messages</h3>
+            <textarea type="text" placeholder="Type your message here...."></textarea><br></ br>
+            <button>Submit</button>
+          </form>
+          </aside>
+        </div>
+
+        <div>
+          {postList.reverse().map((post, idx) => {
+            return (
+              <div className="posts" key={idx}>
+                {console.log(post)}
                 <h3>{post.title}</h3>
                 <span>{post.author.username}</span>
                 <div>{post.price}</div>
                 <div>{post.description}</div>
                 <div>{post.location}</div>
                 <div>
-                {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
+                  {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
                 </div>
-                  {post.isAuthor ? (
-                    <button
-                      onClick={() => {
-                        handleDelete(post._id, idx);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  ) : null}
+                {post.isAuthor ? (
+                  <button
+                    onClick={() => {
+                      handleDelete(post._id, idx);
+                    }}
+                  >
+                    Delete
+                  </button>
+                ) : null}
               </div>
             );
           })}
         </div>
-        </aside>
+      </aside>
     </div>
   );
 };

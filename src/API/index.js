@@ -112,3 +112,26 @@ export const deletePost = async (id) => {
 
   return data;
 };
+
+export const fetchMessages = async (post) => {
+  console.log(post, "in messages");
+  const url = `${BASE_URL}/posts/POST_ID/messages`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: buildHeaders(),
+    body: JSON.stringify({ 
+      message: {
+        
+      }
+     }),
+  });
+
+  const { error, data } = await response.json();
+
+  if (error) {
+    throw Error(error.message);
+  }
+
+  return data;
+};

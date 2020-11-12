@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 import { getToken, clearToken, hitAPI } from "./api";
-import { Auth, Title, Search, Posts } from "./components";
+import { Auth, Title, Posts } from "./components";
+
 import "./styles.css";
 
 const App = () => {
-  const [searchResults, setSearchResults] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(!!getToken());
   const [postList, setPostList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     hitAPI("GET", "/posts")
@@ -19,6 +19,16 @@ const App = () => {
       })
       .catch(console.error);
   }, [isLoggedIn]);
+
+  function filteredPosts() {
+    return postList.filter((post) => {
+      return (
+        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.price.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    });
+  }
 
   return (
     <div className="app">
@@ -44,13 +54,19 @@ const App = () => {
           <Auth setIsLoggedIn={setIsLoggedIn} />
         )}
       </header>
-      <Search />
+
       <main>
-        <Posts
-          postList={postList}
-          setPostList={setPostList}
-          isLoggedIn={isLoggedIn}
-        />
+        <div className="search">
+          <form>
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              placeholder="Search by Title, Location or Price"
+            />
+          </form>
+        </div>
+        <Posts postList={filteredPosts()} isLoggedIn={isLoggedIn} />
       </main>
     </div>
   );

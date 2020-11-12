@@ -120,11 +120,9 @@ export const fetchMessages = async (post) => {
   const response = await fetch(url, {
     method: "POST",
     headers: buildHeaders(),
-    body: JSON.stringify({ 
-      message: {
-        
-      }
-     }),
+    body: JSON.stringify({
+      message: {},
+    }),
   });
 
   const { error, data } = await response.json();

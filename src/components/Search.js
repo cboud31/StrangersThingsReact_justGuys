@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 
 const Search = () => {
-  const [post, setPost] = useState("");
+  const [searchResults, setSearchResults] = useState("");
+
+  function filteredPosts() {
+    postList.filter((post) => {
+      return post.title.toLowerCase().includes(searchResults.toLowerCase());
+    });
+  }
 
   return (
-    <form id="search">
-      <fieldset>
-        <label post="keywords"></label>
-        <input
-          id="keywords"
-          type="text"
-          placeholder="enter keywords..."
-          value={(post.title, post.description)}
-          onChange={(event) => setPost(event.target.value)}
-        />
-      </fieldset>
-      <button>SEARCH</button>
-    </form>
+    <div id="search">
+      <input
+        type="text"
+        placeholder="enter keywords..."
+        value={searchResults}
+        onChange={(event) => setSearchResults(event.target.value)}
+      />
+      <button className="Search">SEARCH</button>
+    </div>
   );
 };
 

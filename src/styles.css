@@ -1,45 +1,117 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: fantasy;
 }
 
 .app {
   text-align: center;
   display: grid;
+  background-color: seashell;
 }
 .nav {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  border: solid rgb(160, 174, 211);
-  border-width: 5px;
-  border-style: double;
   background: seashell;
 }
 
 #search {
   padding-top: 12px;
   padding-bottom: 12px;
-  border: solid seashell;
+  margin-left: 2%;
+  margin-right: 2%;
+  border: seashell;
   border-width: 5px;
-  border-style: double;
+  box-shadow: 0 0 11px #000000;
   background: rgb(160, 174, 211);
 }
 
 .posts {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border-color: rgb(160, 174, 211);
-  border-width: 5px;
-  border-style: double;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  margin-left: 15%;
+  margin-right: 15%;
+
   background: seashell;
+  box-shadow: 0 0 15px #000000;
 }
 
-aside {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border: solid seashell;
+.postForm {
+  border: seashell;
   border-width: 5px;
-  border-style: double;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 2%;
+  margin-right: 2%;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  box-shadow: 0 0 11px #000000;
   background: rgb(160, 174, 211);
+}
+
+.postContainer {
+  background: rgb(160, 174, 211);
+  margin-left: 2%;
+  margin-right: 2%;
+  box-shadow: 0 0 11px #000000;
+}
+
+button {
+  height: 40px;
+  width: 100px;
+  background-color: rgb(160, 174, 211);
+  border-color: seashell;
+  border-width: 5px;
+  border-radius: 50%;
+  box-shadow: 0 0 11px #000000;
+  margin-right: 20px;
+}
+
+.Submit {
+  height: 40px;
+  width: 100px;
+  background-color: seashell;
+  box-shadow: inset;
+  border-color: rgb(160, 174, 211);
+  border-width: 5px;
+  border-radius: 50%;
+}
+
+.Search {
+  height: 40px;
+  width: 100px;
+  background-color: seashell;
+  border-color: rgb(160, 174, 211);
+  box-shadow: 0 0 11px #000000;
+  border-radius: 50%;
+}
+
+.Delete {
+  height: 40px;
+  width: 100px;
+  background-color: rgb(160, 174, 211);
+  border-color: seashell;
+  border-radius: 50%;
+  box-shadow: 0 0 11px #000000;
+}
+
+input {
+  background-color: white;
+  border-color: rgb(160, 174, 211);
+  box-shadow: 0 0 11px #000000;
+  margin: 10px;
+  width: 60%;
+}
+
+textarea {
+  height: 70px;
+  background-color: white;
+  border-color: rgb(160, 174, 211);
+  box-shadow: 0 0 15px #000000;
+  margin-top: 10px;
+  width: 60%;
 }

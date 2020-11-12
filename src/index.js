@@ -6,9 +6,10 @@ import { Auth, Title, Search, Posts } from "./components";
 import "./styles.css";
 
 const App = () => {
-  const [searchResults, setSearchResults] = useState({ post: {} });
+  const [searchResults, setSearchResults] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(!!getToken());
   const [postList, setPostList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     hitAPI("GET", "/posts")
@@ -18,6 +19,12 @@ const App = () => {
       })
       .catch(console.error);
   }, [isLoggedIn]);
+
+  function filteredPosts() {
+    postList.filter((post) => {
+      return post.title.toLowerCase().includes(searchResults.toLowerCase());
+    });
+  }
 
   return (
     <div className="app">
@@ -43,12 +50,15 @@ const App = () => {
           <Auth setIsLoggedIn={setIsLoggedIn} />
         )}
       </header>
-      <Search setSearchResults={setSearchResults} />
-      <Posts
-        postList={postList}
-        setPostList={setPostList}
-        isLoggedIn={isLoggedIn}
-      />
+
+      <main>
+        <Posts
+          postList={filteredPosts()}
+          postList={postList}
+          setPostList={setPostList}
+          isLoggedIn={isLoggedIn}
+        />
+      </main>
     </div>
   );
 };

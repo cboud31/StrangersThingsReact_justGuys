@@ -8,6 +8,7 @@ const Posts = (props) => {
   const [title, setTitle] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
   const [selectDeliver, setSelectDeliver] = useState("no");
+  const [searchResults, setSearchResults] = useState("");
 
   const { postList, setPostList, isLoggedIn } = props;
 
@@ -47,85 +48,98 @@ const Posts = (props) => {
     }
   };
 
+  function filteredPosts() {
+    postList.filter((post) => {
+      return post.title.toLowerCase().includes(searchResults.toLowerCase());
+    });
+  }
+  filteredPosts();
+
   return (
     <div>
-      <aside id="post">
-        {isLoggedIn ? (
-          <aside>
-            <form onSubmit={handleSubmit} className="post">
-              <h3>Create Post</h3>
-              <input
-                type="text"
-                value={title}
-                placeholder="Title"
-                onChange={(e) => setTitle(e.target.value)}
-              ></input>
-              <br />
-              <input
-                type="text"
-                value={description}
-                placeholder="Description"
-                onChange={(e) => setDescription(e.target.value)}
-              ></input>
-              <br />
-              <input
-                type="text"
-                value={location}
-                placeholder="Location"
-                onChange={(e) => setLocation(e.target.value)}
-              ></input>
-              <br />
-              <input
-                type="text"
-                value={price}
-                placeholder="Price"
-                onChange={(e) => setPrice(e.target.value)}
-              ></input>
-              <br />
-              <select
-                value={selectDeliver}
-                onChange={(e) => {
-                  handleChange(e);
-                }}
-                name="Will Deliver"
-              >
-                <option value="no">No</option>
+      <div className="filter-options">
+        <input
+          type="text"
+          value={searchResults}
+          onChange={(event) => setSearchResults(event.target.value)}
+          placeholder="filter your posts"
+        />
+        <button className="Search">SEARCH</button>
+      </div>
+      {isLoggedIn ? (
+        <form onSubmit={handleSubmit} className="postForm">
+          <h3>Create Post</h3>
+          <input
+            type="text"
+            value={title}
+            placeholder="Title"
+            onChange={(e) => setTitle(e.target.value)}
+          ></input>
+          <br />
+          <textarea
+            type="text"
+            value={description}
+            placeholder="Description"
+            onChange={(e) => setDescription(e.target.value)}
+          ></textarea>
+          <br />
+          <input
+            type="text"
+            value={location}
+            placeholder="Location"
+            onChange={(e) => setLocation(e.target.value)}
+          ></input>
+          <br />
+          <input
+            type="text"
+            value={price}
+            placeholder="Price"
+            onChange={(e) => setPrice(e.target.value)}
+          ></input>
+          <br />
+          <select
+            value={selectDeliver}
+            onChange={(e) => {
+              handleChange(e);
+            }}
+            name="Will Deliver"
+          >
+            <option value="no">No</option>
 
-                <option value="yes">Yes</option>
-              </select>
-              <label>Will Deliver</label>
-              <br />
-              <input type="submit" value="Submit"></input>
-            </form>
-          </aside>
-        ) : null}
+            <option value="yes">Yes</option>
+          </select>
+          <label>Will Deliver</label>
+          <br />
+          <input className="Submit" type="submit" value="Submit"></input>
+        </form>
+      ) : null}
 
-      <div>
+      <div className="postContainer">
         {postList.reverse().map((post, idx) => {
           return (
             <div className="posts" key={idx}>
-                <h3>{post.title}</h3>
-                <span>{post.author.username}</span>
-                <div>{post.price}</div>
-                <div>{post.description}</div>
-                <div>{post.location}</div>
-                <div>
+              <h3>{post.title}</h3>
+              <span>{post.author.username}</span>
+              <div>{post.price}</div>
+              <div>{post.description}</div>
+              <div>{post.location}</div>
+              <div>
                 {post.willDeliver ? "Will Deliver" : "Will Not Deliver"}
-                </div>
-                  {post.isAuthor ? (
-                    <button
-                      onClick={() => {
-                        handleDelete(post._id, idx);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  ) : null}
               </div>
-            );
-          })}
-        </div>
-        </aside>
+              {post.isAuthor ? (
+                <button
+                  className="Delete"
+                  onClick={() => {
+                    handleDelete(post._id, idx);
+                  }}
+                >
+                  Delete
+                </button>
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

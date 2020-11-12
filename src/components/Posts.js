@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchPost, hitAPI, deletePost } from "../api";
+import { fetchPost, hitAPI, deletePost, fetchMessages } from "../api";
 
 const Posts = (props) => {
   const [description, setDescription] = useState("");
@@ -8,7 +8,6 @@ const Posts = (props) => {
   const [title, setTitle] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
   const [selectDeliver, setSelectDeliver] = useState("no");
-  const [searchResults, setSearchResults] = useState("");
 
   const { postList, setPostList, isLoggedIn } = props;
 
@@ -48,24 +47,8 @@ const Posts = (props) => {
     }
   };
 
-  function filteredPosts() {
-    postList.filter((post) => {
-      return post.title.toLowerCase().includes(searchResults.toLowerCase());
-    });
-  }
-  filteredPosts();
-
   return (
     <div>
-      <div className="filter-options">
-        <input
-          type="text"
-          value={searchResults}
-          onChange={(event) => setSearchResults(event.target.value)}
-          placeholder="filter your posts"
-        />
-        <button className="Search">SEARCH</button>
-      </div>
       {isLoggedIn ? (
         <form onSubmit={handleSubmit} className="postForm">
           <h3>Create Post</h3>
@@ -139,6 +122,19 @@ const Posts = (props) => {
             </div>
           );
         })}
+      </div>
+      <div>
+        <aside>
+          <form onSubmit={handleSubmit} classname="messages">
+            <h3>Messages</h3>
+            <textarea
+              type="text"
+              placeholder="Type your message here...."
+            ></textarea>
+            <br></br>
+            <button>Submit</button>
+          </form>
+        </aside>
       </div>
     </div>
   );

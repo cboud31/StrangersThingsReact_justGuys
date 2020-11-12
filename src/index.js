@@ -20,12 +20,6 @@ const App = () => {
       .catch(console.error);
   }, [isLoggedIn]);
 
-  function filteredPosts() {
-    postList.filter((post) => {
-      return post.title.toLowerCase().includes(searchResults.toLowerCase());
-    });
-  }
-
   return (
     <div className="app">
       <header className="nav">
@@ -50,10 +44,9 @@ const App = () => {
           <Auth setIsLoggedIn={setIsLoggedIn} />
         )}
       </header>
-
+      <Search />
       <main>
         <Posts
-          postList={filteredPosts()}
           postList={postList}
           setPostList={setPostList}
           isLoggedIn={isLoggedIn}

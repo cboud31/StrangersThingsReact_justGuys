@@ -108,10 +108,10 @@ input {
 }
 
 textarea {
-  height: 70px;
+  height: 20vw;
   background-color: white;
   border-color: rgb(160, 174, 211);
   box-shadow: 0 0 15px #000000;
   margin-top: 10px;
-  width: 60%;
+  width: 60vw;
 }

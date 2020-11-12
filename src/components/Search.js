@@ -3,12 +3,6 @@ import React, { useState } from "react";
 const Search = () => {
   const [searchResults, setSearchResults] = useState("");
 
-  function filteredPosts() {
-    postList.filter((post) => {
-      return post.title.toLowerCase().includes(searchResults.toLowerCase());
-    });
-  }
-
   return (
     <div id="search">
       <input

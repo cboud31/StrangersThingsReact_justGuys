@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchPost, hitAPI, deletePost, fetchMessages } from "../api";
 
-const CreatePost = (props) => {
+const NewPost = (props) => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
@@ -48,54 +48,56 @@ const CreatePost = (props) => {
   };
 
   return (
-    <div>
-      {isLoggedIn ? (
-        <form onSubmit={handleSubmit} className="postForm">
-          <h3>Create Post</h3>
-          <input
-            type="text"
-            value={title}
-            placeholder="Title"
-            onChange={(e) => setTitle(e.target.value)}
-          ></input>
-          <br />
-          <textarea
-            type="text"
-            value={description}
-            placeholder="Description"
-            onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
-          <br />
-          <input
-            type="text"
-            value={location}
-            placeholder="Location"
-            onChange={(e) => setLocation(e.target.value)}
-          ></input>
-          <br />
-          <input
-            type="text"
-            value={price}
-            placeholder="Price"
-            onChange={(e) => setPrice(e.target.value)}
-          ></input>
-          <br />
-          <select
-            value={selectDeliver}
-            onChange={(e) => {
-              handleChange(e);
-            }}
-            name="Will Deliver"
-          >
-            <option value="no">No</option>
+    <>
+      <div className="NewPost">
+        {isLoggedIn ? (
+          <form onSubmit={handleSubmit} className="post">
+            <h3>Create Post</h3>
+            <input
+              type="text"
+              value={title}
+              placeholder="Title"
+              onChange={(e) => setTitle(e.target.value)}
+            ></input>
+            <br />
+            <textarea
+              type="text"
+              value={description}
+              placeholder="Description"
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+            <br />
+            <input
+              type="text"
+              value={location}
+              placeholder="Location"
+              onChange={(e) => setLocation(e.target.value)}
+            ></input>
+            <br />
+            <input
+              type="text"
+              value={price}
+              placeholder="Price"
+              onChange={(e) => setPrice(e.target.value)}
+            ></input>
+            <br />
+            <select
+              value={selectDeliver}
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              name="Will Deliver"
+            >
+              <option value="no">No</option>
 
-            <option value="yes">Yes</option>
-          </select>
-          <label>Will Deliver</label>
-          <br />
-          <input className="Submit" type="submit" value="Submit"></input>
-        </form>
-      ) : null}
+              <option value="yes">Yes</option>
+            </select>
+            <label>Will Deliver</label>
+            <br />
+            <input className="Submit" type="submit" value="Submit"></input>
+          </form>
+        ) : null}
+      </div>
 
       {/* <div className="postContainer">
         <div>
@@ -135,8 +137,8 @@ const CreatePost = (props) => {
           </div>
         );
       })} */}
-    </div>
+    </>
   );
 };
 
-export default CreatePost;
+export default NewPost;

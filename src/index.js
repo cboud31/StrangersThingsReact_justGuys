@@ -89,10 +89,11 @@ const App = () => {
             />
           </section>
           <section className="sideBar">
+         
             <Route exact path="/newpost">
               <NewPost isLoggedIn={isLoggedIn} />
             </Route>
-            <Route exact path="/">
+            <Route exact path="/reply">
               {activePost ? <NewMessage post={activePost} /> : null}
             </Route>
             <Route exact path="/messages">

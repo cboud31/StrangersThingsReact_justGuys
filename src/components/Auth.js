@@ -64,8 +64,12 @@ const Auth = (props) => {
 const NavButtons = () => {
   return (
     <>
-      <Link to="/posts"><button>POSTS</button></Link>
-      <Link to="/messages"><button>MESSAGES</button></Link>
+      <Link to="/reply">
+        <button>REPLY</button>
+      </Link>
+      <Link to="/messages">
+        <button>INBOX</button>
+      </Link>
       <Link to="/newpost">
         <button>NEW POST</button>
       </Link>

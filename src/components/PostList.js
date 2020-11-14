@@ -1,12 +1,28 @@
 import React from "react";
 
-const PostList = ({ postList }) => {
+import { deletePost } from "../api";
+
+const PostList = ({ postList, setActivePost }) => {
+  // const handleDelete = (id, index) =>{
+  //   deletePost(id).then((results) => {
+  //     const postsCopy = postList.slice();
+  //     postsCopy.splice(index, 1);
+  //     setPostList(postsCopy);
+  //   });
+  // }
+
   return (
     <div className="postList">
       {postList.reverse().map((post, idx) => {
         return (
-          <div className="post" key={idx}>
-            {console.log(post)}
+          <div
+            className="post"
+            key={idx}
+            onClick={() => {
+              setActivePost(post);
+            }}
+          >
+            {/* {console.log(post)} */}
             <h3>{post.title}</h3>
             <span>{post.author.username}</span>
             <div>{post.price}</div>
@@ -16,7 +32,11 @@ const PostList = ({ postList }) => {
             {/* {post.isAuthor ? (
                   <button
                     onClick={() => {
-                      handleDelete(post._id, idx);
+                      deletePost(id).then((results) => {
+                        const postsCopy = postList.slice();
+                        postsCopy.splice(index, 1);
+                        setPostList(postsCopy);
+                      });;
                     }}
                   >
                     Delete

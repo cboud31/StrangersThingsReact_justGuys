@@ -133,3 +133,21 @@ export const fetchMessages = async (post) => {
 
   return data;
 };
+
+// export const fetchReplies = async () => {
+//   const url=`${BASE_URL}/users/me`;
+
+//   try {
+//     const response = await fetch(url, {
+//       headers: buildHeaders()
+//     }).then( (reponse) => {
+//       const result = response.json();
+//       const data = result.messages;
+
+//     })
+
+//   } catch (error) {
+//     console.error(error)
+//   }
+//   return data;
+// }

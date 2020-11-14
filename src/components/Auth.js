@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  useParams,
+} from "react-router-dom";
+
 import { auth } from "../api";
 
 const Auth = (props) => {
@@ -53,4 +61,17 @@ const Auth = (props) => {
   );
 };
 
+const NavButtons = () => {
+  return (
+    <>
+      <Link to="/posts"><button>POSTS</button></Link>
+      <Link to="/messages"><button>MESSAGES</button></Link>
+      <Link to="/newpost">
+        <button>NEW POST</button>
+      </Link>
+    </>
+  );
+};
+
 export default Auth;
+export { NavButtons };

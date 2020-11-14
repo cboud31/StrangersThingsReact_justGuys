@@ -10,14 +10,16 @@ import {
 
 // NOTE!! Install React Router (terminal --> npm install react-router-dom) if you haven't already.
 
-import { getToken, clearToken, hitAPI } from "./api";
+import { getToken, clearToken, hitAPI, fetchReplies } from "./api";
 import {
   Auth,
+  NavButtons,
   Title,
   Posts,
   PostList,
   NewPost,
   NewMessage,
+  MessageList,
 } from "./components";
 
 import "./styles.css";
@@ -26,11 +28,13 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(!!getToken());
   const [postList, setPostList] = useState([]);
+  const [activePost, setActivePost] = useState(null);
 
   useEffect(() => {
     hitAPI("GET", "/posts")
       .then((data) => {
         const { posts } = data;
+        // console.log(posts);
         setPostList(posts);
       })
       .catch(console.error);
@@ -53,23 +57,15 @@ const App = () => {
           <Title />
           {isLoggedIn ? (
             <>
-              <div className="navButtons">
-                <button>PROFILE</button>
-                <Link to="/newmessage">
-                  <button>MESSAGES</button>
-                </Link>
-                <Link to="/newpost">
-                  <button>NEW POST</button>
-                </Link>
-                <button
-                  onClick={() => {
-                    clearToken();
-                    setIsLoggedIn(false);
-                  }}
-                >
-                  LOG OUT
-                </button>
-              </div>
+              <NavButtons />
+              <button
+                onClick={() => {
+                  clearToken();
+                  setIsLoggedIn(false);
+                }}
+              >
+                LOG OUT
+              </button>
             </>
           ) : (
             <Auth setIsLoggedIn={setIsLoggedIn} />
@@ -84,20 +80,27 @@ const App = () => {
             placeholder="Search by Title, Location or Price"
           />
         </div>
+
         <main className="main">
           <section className="feature">
-            <PostList postList={filteredPosts()} />
+            <PostList
+              setActivePost={setActivePost}
+              postList={filteredPosts()}
+            />
           </section>
-          {/* Can merge New Post/Message into <Forms />? */}
-          <section className="formArea">
-            <Route path="/newpost">
+          <section className="sideBar">
+            <Route exact path="/newpost">
               <NewPost isLoggedIn={isLoggedIn} />
             </Route>
-            <Route path="/newmessage">
-              <NewMessage />
+            <Route exact path="/">
+              {activePost ? <NewMessage post={activePost} /> : null}
+            </Route>
+            <Route exact path="/messages">
+              <MessageList />
             </Route>
           </section>
         </main>
+
       </div>
     </Router>
   );

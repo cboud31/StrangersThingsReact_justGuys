@@ -59,6 +59,7 @@ const App = () => {
             <>
               <NavButtons />
               <button
+                className="logOut"
                 onClick={() => {
                   clearToken();
                   setIsLoggedIn(false);
@@ -84,14 +85,18 @@ const App = () => {
         <main className="main">
           <section className="feature">
             <PostList
+              setPostList={setPostList}
               setActivePost={setActivePost}
               postList={filteredPosts()}
             />
           </section>
           <section className="sideBar">
-         
             <Route exact path="/newpost">
-              <NewPost isLoggedIn={isLoggedIn} />
+              <NewPost
+                isLoggedIn={isLoggedIn}
+                postList={postList}
+                setPostList={setPostList}
+              />
             </Route>
             <Route exact path="/reply">
               {activePost ? <NewMessage post={activePost} /> : null}
@@ -101,7 +106,6 @@ const App = () => {
             </Route>
           </section>
         </main>
-
       </div>
     </Router>
   );

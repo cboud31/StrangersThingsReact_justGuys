@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchPost, hitAPI, deletePost, fetchMessages } from "../api";
+import { fetchPost } from "../api";
 
 const NewPost = (props) => {
   const [description, setDescription] = useState("");
@@ -26,14 +26,6 @@ const NewPost = (props) => {
       const post = result.post;
       const postsCopy = postList.slice();
       postsCopy.push(post);
-      setPostList(postsCopy);
-    });
-  };
-
-  const handleDelete = (id, index) => {
-    deletePost(id).then((results) => {
-      const postsCopy = postList.slice();
-      postsCopy.splice(index, 1);
       setPostList(postsCopy);
     });
   };
@@ -98,45 +90,6 @@ const NewPost = (props) => {
           </form>
         ) : null}
       </div>
-
-      {/* <div className="postContainer">
-        <div>
-          <aside>
-            <form onSubmit={handleSubmit} classname="messages">
-              <h3>Messages</h3>
-              <textarea
-                type="scroll"
-                placeholder="Drag the bottom right corner for more space...."
-              ></textarea>
-              <br></br>
-              <button className="Submit">Submit</button>
-            </form>
-          </aside>
-        </div>
-      </div> */}
-
-      {/* {postList.reverse().map((post, idx) => {
-        return (
-          <div className="posts" key={idx}>
-            <h3>{post.title}</h3>
-            <span>{post.author.username}</span>
-            <div>{post.price}</div>
-            <div>{post.description}</div>
-            <div>{post.location}</div>
-            <div>{post.willDeliver ? "Will Deliver" : "Will Not Deliver"}</div>
-            {post.isAuthor ? (
-              <button
-                className="Delete"
-                onClick={() => {
-                  handleDelete(post._id, idx);
-                }}
-              >
-                Delete
-              </button>
-            ) : null}
-          </div>
-        );
-      })} */}
     </>
   );
 };

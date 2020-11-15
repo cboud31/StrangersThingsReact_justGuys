@@ -19,19 +19,12 @@ const Auth = (props) => {
 
   return (
     <form onSubmit={(event) => event.preventDefault()}>
-      <h3>Register or Log In</h3>
       {errorMessage ? <h5 className="error">{errorMessage}</h5> : null}
       <input
         type="text"
         value={username}
         onChange={(event) => setUsername(event.target.value)}
         placeholder="username"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-        placeholder="password"
       />
       <button
         onClick={async (event) => {
@@ -45,6 +38,13 @@ const Auth = (props) => {
       >
         Register
       </button>
+      <input
+        type="password"
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+        placeholder="password"
+      />
+
       <button
         onClick={async (event) => {
           try {

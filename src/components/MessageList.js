@@ -4,7 +4,7 @@ import { hitAPI } from "../api";
 const MessageList = ({ messageList }) => {
   return (
     <div className="MessageList">
-      {!messageList.length > 0 ? (
+      {messageList.length == 0 ? (
         <h2>Your inbox is currently empty.</h2>
       ) : (
         messageList.map((message, idx) => {

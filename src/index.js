@@ -29,6 +29,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(!!getToken());
   const [postList, setPostList] = useState([]);
   const [activePost, setActivePost] = useState(null);
+  const [messageList, setMessageList] = useState([]);
 
   useEffect(() => {
     hitAPI("GET", "/posts")
@@ -102,7 +103,7 @@ const App = () => {
               {activePost ? <NewMessage post={activePost} /> : null}
             </Route>
             <Route exact path="/messages">
-              <MessageList />
+              <MessageList messageList={messageList} />
             </Route>
           </section>
         </main>

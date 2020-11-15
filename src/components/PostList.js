@@ -4,7 +4,7 @@ import { deletePost } from "../api";
 
 
 const PostList = (props) => {
-  const { postList, setPostList, setActivePost } = props;
+  const { postList, isLoggedIn, setPostList, setActivePost } = props;
 
   const history = useHistory();
   const handleDelete = (id, index) => {
@@ -35,14 +35,18 @@ const PostList = (props) => {
                 Delete
               </button>
             ) : null }
-             <button
-                onClick={() => {
-                  setActivePost(post);
-                  history.push("/reply")
-                }}
+            { !post.isAuthor && isLoggedIn ? (
+
+              <button
+              onClick={() => {
+                setActivePost(post);
+                history.push("/reply")
+              }}
               >
                 Reply
               </button>
+        ) : null
+        }
           </div>
         );
       })}

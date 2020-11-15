@@ -86,6 +86,7 @@ const App = () => {
         <main className="main">
           <section className="feature">
             <PostList
+              isLoggedIn={isLoggedIn}
               setPostList={setPostList}
               setActivePost={setActivePost}
               postList={filteredPosts()}
@@ -100,7 +101,7 @@ const App = () => {
               />
             </Route>
             <Route exact path="/reply">
-              {activePost ? <NewMessage post={activePost} /> : null}
+              {isLoggedIn ? <NewMessage post={activePost} /> : null}
             </Route>
             <Route exact path="/messages">
               <MessageList messageList={messageList} />

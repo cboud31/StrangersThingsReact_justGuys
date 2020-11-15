@@ -97,45 +97,7 @@ const CreatePost = (props) => {
         </form>
       ) : null}
 
-      {/* <div className="postContainer">
-        <div>
-          <aside>
-            <form onSubmit={handleSubmit} classname="messages">
-              <h3>Messages</h3>
-              <textarea
-                type="scroll"
-                placeholder="Drag the bottom right corner for more space...."
-              ></textarea>
-              <br></br>
-              <button className="Submit">Submit</button>
-            </form>
-          </aside>
-        </div>
-      </div> */}
-
-      {/* {postList.reverse().map((post, idx) => {
-        return (
-          <div className="posts" key={idx}>
-            <h3>{post.title}</h3>
-            <span>{post.author.username}</span>
-            <div>{post.price}</div>
-            <div>{post.description}</div>
-            <div>{post.location}</div>
-            <div>{post.willDeliver ? "Will Deliver" : "Will Not Deliver"}</div>
-            {post.isAuthor ? (
-              <button
-                className="Delete"
-                onClick={() => {
-                  handleDelete(post._id, idx);
-                }}
-              >
-                Delete
-              </button>
-            ) : null}
           </div>
-        );
-      })} */}
-    </div>
   );
 };
 

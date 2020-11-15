@@ -8,6 +8,7 @@ const NewPost = (props) => {
   const [title, setTitle] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
   const [selectDeliver, setSelectDeliver] = useState("no");
+  const [messageList, setMessageList] = ([]);
 
   const { postList, setPostList, isLoggedIn } = props;
 

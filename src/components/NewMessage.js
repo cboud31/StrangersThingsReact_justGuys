@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import { hitAPI } from "../api";
 
 const NewMessage = ({ post: { title, _id } }) => {
+  const [reply, setReply] = useState("");
   return (
     <div className="NewMessage">
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          // call HITAPI with url for /posts/{ _id }/messages
+          hitAPI("POST", `/posts/${_id}/messages`, {
+            message: { content: reply },
+          });
         }}
-        classname="messages"
+        className="messages"
       >
-        <h3>Send Message on {title}</h3>
+        <h3>Reply to {title}:</h3>
         <textarea
           type="scroll"
+          value={reply}
+          onChange={(event) => {
+            setReply(event.target.value);
+          }}
           placeholder="Drag the bottom right corner for more space...."
         ></textarea>
         <br></br>

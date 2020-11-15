@@ -8,7 +8,6 @@ const NewPost = (props) => {
   const [title, setTitle] = useState("");
   const [willDeliver, setWillDeliver] = useState(false);
   const [selectDeliver, setSelectDeliver] = useState("no");
-  const [messageList, setMessageList] = ([]);
 
   const { postList, setPostList, isLoggedIn } = props;
 
@@ -28,6 +27,13 @@ const NewPost = (props) => {
       const postsCopy = postList.slice();
       postsCopy.push(post);
       setPostList(postsCopy);
+      //resetting state to reset form 
+      setDescription("");
+      setLocation("");
+      setPrice("");
+      setTitle("");
+      setWillDeliver(false);
+      setSelectDeliver("no");
     });
   };
 

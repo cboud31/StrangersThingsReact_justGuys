@@ -6,19 +6,23 @@ const NewMessage = ({ post: { title, _id } }) => {
   return (
     <div className="NewMessage">
       <form
+          className="messages"
         onSubmit={(event) => {
           event.preventDefault();
           hitAPI("POST", `/posts/${_id}/messages`, {
             message: { content: reply },
-          });
+          }).then( () => {
+            setReply("");
+          }
+          );
+
         }}
-        className="messages"
       >
-        <h3>Reply to {title}:</h3>
+        <h3>Reply to { title }:</h3>
         <textarea
           type="scroll"
-          value={reply}
-          onChange={(event) => {
+          value={ reply }
+          onChange={ (event) => {
             setReply(event.target.value);
           }}
           placeholder="Drag the bottom right corner for more space...."
